@@ -1,6 +1,6 @@
 # Graduate Salary Tracker — Phase 2
 
-A desktop-first salary estimator for fresh graduates and early-career job seekers. It uses local seed data to show an estimated salary range, confidence, comparable listings, and five locally stored recent searches. Phase 2 also presents clearly attributed live USAJobs federal openings when configured.
+A desktop-first salary estimator for fresh graduates and early-career job seekers. It uses curated local data to show an estimated salary range, confidence, detailed comparable listings, and five locally stored recent searches.
 
 ## Run locally
 
@@ -14,13 +14,12 @@ Then visit `http://localhost:8000`. A server is required because the app fetches
 
 ## Deployment
 
-Deploy the project root to Vercel. No build command is required. To enable live USAJobs results, add these encrypted Vercel environment variables for Production, Preview, and Development:
-
-- `USAJOBS_API_KEY`: the API key issued by USAJobs.
-- `USAJOBS_USER_AGENT`: the email address registered with that USAJobs key.
-
-The browser calls the internal `/api/usajobs` serverless function, so credentials never reach the browser or GitHub. Until both values are present, the page shows a setup message instead of live listings.
+This is a static site and can be deployed to Vercel with the project root as the deployment directory. No build command, API key, environment variable, or external service is required.
 
 ## Scope
 
-This implementation intentionally includes no accounts, authentication, database, scraping, AI features, or third-party libraries. See `CONTRACTS.md` and `CHECKS.md` for data and verification details.
+## Phase 2 data approach
+
+Phase 2 uses expanded curated sample data because the USAJobs integration was postponed. Each result includes role-specific example employers, a selection-specific location and experience level, an illustrative salary range, and a source placeholder. `source.js` is the sole application boundary for data loading and normalization, so a future API can replace the local source without changing the UI.
+
+This implementation intentionally includes no accounts, authentication, database, API dependency, scraping, AI features, or third-party libraries. See `CONTRACTS.md` and `CHECKS.md` for data and verification details.

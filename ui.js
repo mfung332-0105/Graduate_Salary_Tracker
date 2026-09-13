@@ -16,25 +16,9 @@ window.SalaryUI = (() => {
       [["minimum", estimate.minimum], ["median", estimate.median], ["maximum", estimate.maximum], ["range-min", estimate.minimum], ["range-max", estimate.maximum]].forEach(([id, value]) => document.querySelector(`#${id}`).textContent = formatMoney(value));
       document.querySelector("#confidence").textContent = `${estimate.confidence} confidence`;
       document.querySelector("#confidence-copy").textContent = `Based on ${estimate.sampleSize} comparable early-career salary observations for this role and location.`;
-      document.querySelector("#listing-list").innerHTML = estimate.listings.map(listing => `<li><div><strong>${escapeHtml(listing.title)}</strong><span>${escapeHtml(listing.company)} · ${escapeHtml(listing.location)}</span></div><b>${formatMoney(listing.salary)}</b></li>`).join("");
+      document.querySelector("#listing-list").innerHTML = estimate.listings.map(listing => `<li><div><strong>${escapeHtml(listing.title)}</strong><span>${escapeHtml(listing.company)} · ${escapeHtml(listing.location)}</span><small>${escapeHtml(listing.experience)} · ${escapeHtml(listing.source)}</small></div><b>${formatMoney(listing.minimum)}–${formatMoney(listing.maximum)}</b></li>`).join("");
       results.hidden = false;
       results.scrollIntoView({ behavior: "smooth", block: "start" });
-    },
-    federalLoading() {
-      const section = document.querySelector("#federal-openings");
-      section.hidden = false;
-      document.querySelector("#federal-status").textContent = "Searching current USAJobs openings…";
-      document.querySelector("#federal-list").innerHTML = "";
-    },
-    federalResults(payload) {
-      document.querySelector("#federal-status").textContent = payload.totalCount
-        ? `${payload.totalCount.toLocaleString()} matching openings found; showing the first ${payload.openings.length}.`
-        : "No current federal openings matched this search.";
-      document.querySelector("#federal-list").innerHTML = payload.openings.map(opening => `<li><div><strong>${escapeHtml(opening.title)}</strong><span>${escapeHtml(opening.agency)} · ${escapeHtml(opening.location)}</span><small>${escapeHtml(opening.closeDate)}</small></div><div class="federal-action"><b>${escapeHtml(opening.salary)}</b><a href="${escapeHtml(opening.url)}" target="_blank" rel="noopener noreferrer">View on USAJobs ↗</a></div></li>`).join("");
-    },
-    federalError(message) {
-      document.querySelector("#federal-status").textContent = message;
-      document.querySelector("#federal-list").innerHTML = "";
     },
     showRecent(searches, onSelect) {
       const box = document.querySelector("#recent-searches");

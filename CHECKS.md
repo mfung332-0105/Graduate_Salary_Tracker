@@ -6,5 +6,6 @@
 - Make six distinct searches and confirm local history retains only five.
 - Reload the page and confirm recent searches persist. Use **Clear history** and confirm it empties.
 - Choose any otherwise untested role, location, and experience combination and confirm a seed-data estimate and three illustrative listings appear.
-- With no USAJobs Vercel variables configured, confirm a useful live-listings setup message is shown after estimating.
-- With valid `USAJOBS_API_KEY` and `USAJOBS_USER_AGENT` Vercel variables, confirm live openings, salaries, official close dates, and USAJobs links appear. Confirm the API key is absent from the browser source and Git history.
+- Confirm each estimate displays three detailed comparable listings with title, employer, selected location, selected experience level, illustrative salary range, and source placeholder.
+- Confirm the site works with network access disabled after its local JSON has loaded; no API key, environment variable, external service, or external request is required.
+- Confirm `source.js` remains the only application module loading or normalizing data, so a future API can keep the same UI contract.
