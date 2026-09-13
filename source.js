@@ -4,8 +4,8 @@ window.SalarySource = {
     if (!response.ok) throw new Error("Salary data could not be loaded.");
     return response.json();
   },
-  async liveOpenings(selection) {
-    const query = new URLSearchParams({ role: selection.role, location: selection.location });
+  async liveOpenings(selection, includeRemote = false) {
+    const query = new URLSearchParams({ role: selection.role, location: selection.location, includeRemote: String(includeRemote) });
     const response = await fetch(`${window.SalaryTrackerConfig.liveOpeningsUrl}?${query}`);
     const payload = await response.json().catch(() => ({}));
     if (!response.ok) throw new Error(payload.message || "Live openings could not be loaded right now.");

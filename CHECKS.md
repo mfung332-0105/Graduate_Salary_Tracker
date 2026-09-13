@@ -15,4 +15,5 @@
 - Use **Share estimate** and open the generated URL in a new browser context. Confirm it restores the selected role, location, experience level, and same salary estimate without an account.
 - Open a URL with invalid share parameters and confirm it does not overwrite the current form or show an invalid result.
 - On a Vercel deployment, make an estimate and confirm the live-openings panel loads only official Figma Greenhouse or Swiftly Lever postings, labels the source, and links to the official posting in a new tab. Confirm the panel does not alter the curated salary range.
+- Select a state with no matching live postings and confirm the panel does not substitute jobs from a different state. Enable **Include U.S. remote roles** and confirm only explicitly remote U.S. openings may be added.
 - Temporarily make the live-openings endpoint unavailable and confirm the panel shows a useful error while the salary estimate and curated listings still work.

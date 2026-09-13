@@ -2,6 +2,7 @@
   const { storageKey, maxRecentSearches } = window.SalaryTrackerConfig;
   let data;
   let currentSelection;
+  let includeRemote = false;
   const getRecent = () => { try { return JSON.parse(localStorage.getItem(storageKey)) || []; } catch { return []; } };
   const saveRecent = search => {
     const unique = getRecent().filter(item => !(item.role === search.role && item.location === search.location && item.experience === search.experience));
@@ -19,7 +20,7 @@
   };
   const loadLiveOpenings = async selection => {
     SalaryUI.liveOpeningsLoading();
-    try { SalaryUI.showLiveOpenings(await SalarySource.liveOpenings(selection)); }
+    try { SalaryUI.showLiveOpenings(await SalarySource.liveOpenings(selection, includeRemote)); }
     catch (error) { SalaryUI.liveOpeningsError(error.message); }
   };
   const shareCurrentEstimate = async () => {
@@ -56,6 +57,10 @@
       SalaryUI.showComparison(first, second);
     });
     document.querySelector("#share-result").addEventListener("click", shareCurrentEstimate);
+    document.querySelector("#include-remote").addEventListener("change", event => {
+      includeRemote = event.target.checked;
+      if (currentSelection) loadLiveOpenings(currentSelection);
+    });
     const sharedSelection = Object.fromEntries(new URLSearchParams(window.location.search));
     if (data.roles.includes(sharedSelection.role) && data.locations.includes(sharedSelection.location) && data.experienceLevels.includes(sharedSelection.experience)) {
       SalaryUI.setSelection(sharedSelection); calculate(sharedSelection); SalaryUI.shareMessage("Viewing a shared estimate.");

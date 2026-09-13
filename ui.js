@@ -28,8 +28,8 @@ window.SalaryUI = (() => {
     showLiveOpenings(payload) {
       const status = document.querySelector("#live-openings-status");
       if (!payload.sourceCount) { status.textContent = "Live employer boards are temporarily unavailable."; return; }
-      if (!payload.openings.length) { status.textContent = "No matching openings are available from the selected employer boards right now."; return; }
-      status.textContent = payload.locationNote || `Showing ${payload.openings.length} live opening${payload.openings.length === 1 ? "" : "s"} from ${payload.sourceCount} official employer board${payload.sourceCount === 1 ? "" : "s"}.`;
+      if (!payload.openings.length) { status.textContent = `No matching live openings were found for ${payload.location}. Try another location or include U.S. remote roles.`; return; }
+      status.textContent = `Showing ${payload.openings.length} live opening${payload.openings.length === 1 ? "" : "s"} from ${payload.sourceCount} official employer board${payload.sourceCount === 1 ? "" : "s"} for ${payload.location}${payload.includeRemote ? ", including U.S. remote roles" : ""}.`;
       document.querySelector("#live-openings-list").innerHTML = payload.openings.map(opening => `<li><div><strong>${escapeHtml(opening.title)}</strong><span>${escapeHtml(opening.company)} · ${escapeHtml(opening.location)}</span><small>${escapeHtml(opening.source)}</small></div><a class="apply-link" href="${escapeHtml(opening.url)}" target="_blank" rel="noopener noreferrer">View official posting ↗</a></li>`).join("");
     },
     liveOpeningsError(message) {

@@ -17,10 +17,10 @@ const roleTerms = {
 };
 
 const locationTerms = {
-  California: ["california", "san francisco", "los angeles", "remote"],
-  "New York": ["new york", "nyc", "remote"], Texas: ["texas", "austin", "dallas", "remote"],
-  Washington: ["washington", "seattle", "remote"], Florida: ["florida", "miami", "remote"],
-  Illinois: ["illinois", "chicago", "remote"], Massachusetts: ["massachusetts", "boston", "remote"]
+  California: ["california", "san francisco", "los angeles"],
+  "New York": ["new york", "nyc"], Texas: ["texas", "austin", "dallas"],
+  Washington: ["washington", "seattle"], Florida: ["florida", "miami"],
+  Illinois: ["illinois", "chicago"], Massachusetts: ["massachusetts", "boston"]
 };
 
 const normalizeGreenhouse = source => job => ({
@@ -45,15 +45,16 @@ async function fetchSource(source) {
 module.exports = async function handler(request, response) {
   const role = String(request.query.role || "");
   const location = String(request.query.location || "National Average");
+  const includeRemote = request.query.includeRemote === "true";
   const terms = roleTerms[role];
   if (!terms) return response.status(400).json({ message: "Choose a supported role to find live openings." });
   const settled = await Promise.allSettled(sources.map(fetchSource));
   const allOpenings = settled.flatMap(result => result.status === "fulfilled" ? result.value : []);
   const matchingRole = allOpenings.filter(opening => terms.some(term => includesRoleTerm(opening.title, term)));
   const preferredLocations = locationTerms[location] || [];
-  const matchingLocation = preferredLocations.length ? matchingRole.filter(opening => preferredLocations.some(term => opening.location.toLowerCase().includes(term))) : matchingRole;
-  const openings = (matchingLocation.length ? matchingLocation : matchingRole).slice(0, 5);
-  const locationNote = matchingRole.length && !matchingLocation.length && preferredLocations.length ? "No role matches were found in the selected location, so showing other available U.S. locations." : null;
+  const matchesRemote = opening => /\bremote\b/i.test(opening.location);
+  const matchingLocation = preferredLocations.length ? matchingRole.filter(opening => preferredLocations.some(term => opening.location.toLowerCase().includes(term)) || (includeRemote && matchesRemote(opening))) : matchingRole;
+  const openings = matchingLocation.slice(0, 5);
   response.setHeader("Cache-Control", "s-maxage=300, stale-while-revalidate=600");
-  return response.status(200).json({ openings, sourceCount: settled.filter(result => result.status === "fulfilled").length, locationNote });
+  return response.status(200).json({ openings, sourceCount: settled.filter(result => result.status === "fulfilled").length, location, includeRemote });
 };
