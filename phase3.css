@@ -34,6 +34,10 @@
     url("assets/hero-negotiation.png") center / cover no-repeat;
 }
 .hero > * { position: relative; z-index: 1; }
+.hero h1 {
+  max-width: 900px;
+  font-size: clamp(2.8rem, 5vw, 4.25rem);
+}
 .hero .lede { max-width: 560px; }
 @media (max-width: 700px) {
   .hero { min-height: 250px; margin: -24px -18px 42px; padding: 46px 30px 38px; background-position: 64% center; }
