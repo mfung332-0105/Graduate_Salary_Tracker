@@ -6,6 +6,7 @@
     <meta name="description" content="Explore salary estimates for early-career roles." />
     <title>Graduate Salary Tracker</title>
     <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="phase3.css" />
   </head>
   <body>
     <main class="shell">
@@ -40,7 +41,8 @@
       </section>
 
       <section id="results" class="results" hidden aria-live="polite" aria-labelledby="results-heading">
-        <div class="results-heading"><div><p class="section-label">Your estimate</p><h2 id="results-heading"></h2></div><span id="confidence" class="confidence"></span></div>
+        <div class="results-heading"><div><p class="section-label">Your estimate</p><h2 id="results-heading"></h2></div><div class="result-actions"><span id="confidence" class="confidence"></span><button id="share-result" class="secondary-button" type="button">Share estimate</button></div></div>
+        <p id="share-message" class="share-message" role="status"></p>
         <div class="card estimate-card">
           <div class="stat"><span>Minimum</span><strong id="minimum">—</strong></div>
           <div class="stat featured"><span>Median estimate</span><strong id="median">—</strong></div>
@@ -56,6 +58,21 @@
       <section class="recent-section" aria-labelledby="recent-heading">
         <div class="recent-heading"><div><p class="section-label">Local history</p><h2 id="recent-heading">Recent searches</h2></div><button id="clear-searches" class="text-button" type="button" hidden>Clear history</button></div>
         <div id="recent-searches" class="recent-list"><p class="empty-state">Your five most recent estimates will appear here.</p></div>
+      </section>
+      <section id="comparison" class="comparison-section" aria-labelledby="comparison-heading">
+        <div><p class="section-label">Compare estimates</p><h2 id="comparison-heading">See two searches side by side</h2></div>
+        <p id="comparison-empty" class="empty-state">Make at least two estimates to compare salary ranges.</p>
+        <form id="comparison-form" class="comparison-controls" hidden>
+          <label>First estimate<select id="compare-first" required></select></label>
+          <span class="versus" aria-hidden="true">vs</span>
+          <label>Second estimate<select id="compare-second" required></select></label>
+          <button type="submit">Compare</button>
+        </form>
+        <div id="comparison-result" class="comparison-result" hidden aria-live="polite">
+          <article id="comparison-first" class="card comparison-card"></article>
+          <div class="comparison-difference"><span>Median difference</span><strong id="comparison-difference">—</strong><p id="comparison-summary"></p></div>
+          <article id="comparison-second" class="card comparison-card"></article>
+        </div>
       </section>
     </main>
     <footer>Built to help you begin salary conversations feeling prepared.</footer>

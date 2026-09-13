@@ -1,0 +1,21 @@
+.result-actions { display: flex; align-items: center; gap: 10px; }
+.secondary-button { padding: 7px 10px; border: 1px solid var(--line); border-radius: 999px; background: #fff; color: var(--accent); font-size: .82rem; font-weight: 750; }
+.secondary-button:hover { border-color: var(--accent); background: var(--sage); }
+.share-message { min-height: 1.3rem; margin: 8px 0 -2px; color: var(--accent); font-size: .85rem; }
+.comparison-section { margin-top: 54px; }
+.comparison-controls { display: grid; grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr) auto; align-items: end; gap: 13px; margin-top: 20px; }
+.comparison-controls select { min-width: 0; }
+.comparison-controls button { padding: 12px 16px; border-radius: 9px; background: var(--dark); color: #fff; font-weight: 750; }
+.versus { padding-bottom: 11px; color: var(--muted); font-family: Georgia, serif; font-style: italic; }
+.comparison-result { display: grid; grid-template-columns: 1fr .65fr 1fr; align-items: stretch; gap: 16px; margin-top: 20px; }
+.comparison-card { padding: 22px; }
+.comparison-card h3 { margin: 0 0 5px; font-size: 1.05rem; }
+.comparison-card p { margin: 0; color: var(--muted); font-size: .86rem; }
+.comparison-card strong { display: block; margin-top: 20px; color: var(--accent); font-size: 1.45rem; letter-spacing: -.04em; }
+.comparison-card small { color: var(--muted); }
+.comparison-difference { display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 20px; border-radius: 18px; background: var(--sage); text-align: center; }
+.comparison-difference span { color: var(--muted); font-size: .8rem; }
+.comparison-difference strong { margin: 5px 0; color: var(--dark); font-size: 1.55rem; letter-spacing: -.04em; }
+.comparison-difference p { margin: 0; color: var(--muted); font-size: .8rem; }
+@media (max-width: 760px) { .comparison-controls { grid-template-columns: 1fr; } .versus { padding: 0; text-align: center; } .comparison-result { grid-template-columns: 1fr; } .comparison-difference { min-height: 120px; } }
+@media (max-width: 500px) { .result-actions { align-items: flex-start; flex-direction: column; } }
