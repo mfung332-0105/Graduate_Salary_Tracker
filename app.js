@@ -6,7 +6,7 @@
   let showdownRound;
   let showdownLocked = false;
   const showdownScore = { correct: 0, rounds: 0 };
-  const showdownRoundLimit = 20;
+  const showdownRoundLimit = 10;
   const getRecent = () => { try { return JSON.parse(localStorage.getItem(storageKey)) || []; } catch { return []; } };
   const saveRecent = search => {
     const unique = getRecent().filter(item => !(item.role === search.role && item.location === search.location && item.experience === search.experience));

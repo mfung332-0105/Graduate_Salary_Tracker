@@ -94,7 +94,7 @@ window.SalaryUI = (() => {
       });
       const percentage = Math.round((score.correct / score.rounds) * 100);
       document.querySelector("#showdown-score").textContent = `${score.correct} / ${score.rounds} · ${percentage}%`;
-      document.querySelector("#showdown-feedback").textContent = complete ? `Game complete — you got ${score.correct} out of 20 correct (${percentage}%).` : correct ? "Correct — nice read on the salary range." : `Not quite — ${round[winner].selection.role} has the higher median.`;
+      document.querySelector("#showdown-feedback").textContent = complete ? `Game complete — you got ${score.correct} out of ${score.rounds} correct (${percentage}%).` : correct ? "Correct — nice read on the salary range." : `Not quite — ${round[winner].selection.role} has the higher median.`;
       const next = document.querySelector("#showdown-next");
       next.hidden = complete;
     },
