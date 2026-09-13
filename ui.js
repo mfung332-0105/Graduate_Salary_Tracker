@@ -68,6 +68,29 @@ window.SalaryUI = (() => {
       document.querySelector("#comparison-result").hidden = false;
     },
     shareMessage(text) { document.querySelector("#share-message").textContent = text; },
+    showShowdownRound(round, score, onChoose) {
+      const card = (entry, choice) => `<button class="showdown-card" type="button" data-choice="${choice}"><span class="showdown-choice">Option ${choice === "first" ? "A" : "B"}</span><strong>${escapeHtml(entry.selection.role)}</strong><span>${escapeHtml(entry.selection.location)}</span><small>${escapeHtml(entry.selection.experience)}</small><em>Choose this estimate</em></button>`;
+      document.querySelector("#showdown-cards").innerHTML = `${card(round.first, "first")}<span class="showdown-versus" aria-hidden="true">vs</span>${card(round.second, "second")}`;
+      document.querySelector("#showdown-score").textContent = `${score.correct} / ${score.rounds}`;
+      document.querySelector("#showdown-feedback").textContent = "";
+      document.querySelector("#showdown-next").hidden = true;
+      document.querySelectorAll(".showdown-card").forEach(button => button.addEventListener("click", () => onChoose(button.dataset.choice)));
+    },
+    showShowdownAnswer(round, selected, score) {
+      const winner = round.first.median > round.second.median ? "first" : "second";
+      const correct = selected === winner;
+      document.querySelectorAll(".showdown-card").forEach(button => {
+        const choice = button.dataset.choice;
+        button.disabled = true;
+        button.classList.toggle("showdown-winner", choice === winner);
+        button.classList.toggle("showdown-miss", choice === selected && !correct);
+        const estimate = round[choice];
+        button.insertAdjacentHTML("beforeend", `<b>Median ${formatMoney(estimate.median)}</b>`);
+      });
+      document.querySelector("#showdown-score").textContent = `${score.correct} / ${score.rounds}`;
+      document.querySelector("#showdown-feedback").textContent = correct ? "Correct — nice read on the salary range." : `Not quite — ${round[winner].selection.role} has the higher median.`;
+      document.querySelector("#showdown-next").hidden = false;
+    },
     setSelection(selection) { Object.entries(selection).forEach(([name, value]) => { document.querySelector(`#${name}`).value = value; }); }
   };
 })();

@@ -13,3 +13,5 @@ The app reads and writes `graduate-salary-tracker-recent-searches` in browser lo
 `source.js` also calls the internal `/api/live-openings` endpoint for optional live employer jobs. The Vercel function reads only selected public Greenhouse and Lever job-board APIs, normalizes their results, and returns `title`, `company`, `location`, `url`, and `source`. A selected state is strict: unmatched jobs in another state are not substituted. `includeRemote` can add postings explicitly marked remote. This data is displayed separately and never affects salary calculations.
 
 Phase 3 compares two records from the existing localStorage history by passing each back through `estimateFor`. Share URLs use the query parameters `role`, `location`, and `experience`; the app validates each against the local dataset before restoring an estimate.
+
+Salary Showdown creates two random selections from the local role, location, and experience arrays, then evaluates both via `estimateFor`. Score is in-memory only and records correct answers and completed rounds for the current page session.

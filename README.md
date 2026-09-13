@@ -30,6 +30,10 @@ Compare any two locally saved searches to view their selections, salary ranges, 
 
 Each curated comparable listing includes a **Search similar roles** link. It opens a Google search for the listing title and selected location; it is not an application link or a claim that the example vacancy is live.
 
+## Salary Showdown
+
+At the bottom of the page, **Salary Showdown** presents two random role, location, and experience combinations. Choose the one with the higher calculated median salary to reveal both medians and build an in-session score. It uses the same local salary model as the main estimator and does not store or share game activity.
+
 ## Live employer openings
 
 The app also shows a separate live-openings panel after an estimate. It reads selected public employer job boards from Figma (Greenhouse) and Swiftly (Lever), matches their published titles to the selected role and state, and links directly to the official posting. Multi-location postings identify the location matching the user’s selection and list any other eligible locations separately. Use **Include U.S. remote roles** to add explicitly remote U.S. openings; otherwise, the panel does not substitute jobs from another state. These live jobs are not used to calculate salary estimates. No credentials are required; if a board is unavailable, the panel explains that rather than changing the estimate.

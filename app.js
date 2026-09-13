@@ -3,6 +3,9 @@
   let data;
   let currentSelection;
   let includeRemote = false;
+  let showdownRound;
+  let showdownLocked = false;
+  const showdownScore = { correct: 0, rounds: 0 };
   const getRecent = () => { try { return JSON.parse(localStorage.getItem(storageKey)) || []; } catch { return []; } };
   const saveRecent = search => {
     const unique = getRecent().filter(item => !(item.role === search.role && item.location === search.location && item.experience === search.experience));
@@ -39,9 +42,33 @@
       SalaryUI.shareMessage("Share link copied to your clipboard.");
     }
   };
+  const randomSelection = () => ({
+    role: data.roles[Math.floor(Math.random() * data.roles.length)],
+    location: data.locations[Math.floor(Math.random() * data.locations.length)],
+    experience: data.experienceLevels[Math.floor(Math.random() * data.experienceLevels.length)]
+  });
+  const startShowdownRound = () => {
+    const firstSelection = randomSelection();
+    const first = { selection: firstSelection, ...SalarySource.estimateFor(data, firstSelection) };
+    let secondSelection = randomSelection();
+    let second = { selection: secondSelection, ...SalarySource.estimateFor(data, secondSelection) };
+    for (let attempts = 0; second.median === first.median && attempts < 20; attempts += 1) {
+      secondSelection = randomSelection(); second = { selection: secondSelection, ...SalarySource.estimateFor(data, secondSelection) };
+    }
+    showdownRound = { first, second };
+    showdownLocked = false;
+    SalaryUI.showShowdownRound(showdownRound, showdownScore, choice => {
+      if (showdownLocked) return;
+      showdownLocked = true;
+      const winner = showdownRound.first.median > showdownRound.second.median ? "first" : "second";
+      showdownScore.rounds += 1;
+      if (choice === winner) showdownScore.correct += 1;
+      SalaryUI.showShowdownAnswer(showdownRound, choice, showdownScore);
+    });
+  };
   document.addEventListener("DOMContentLoaded", async () => {
     const form = document.querySelector("#salary-form");
-    try { data = await SalarySource.load(); SalaryUI.populate(data); renderRecent(); }
+    try { data = await SalarySource.load(); SalaryUI.populate(data); renderRecent(); startShowdownRound(); }
     catch (error) { SalaryUI.message(error.message); return; }
     form.addEventListener("submit", event => { event.preventDefault(); const selection = Object.fromEntries(new FormData(form)); if (Object.values(selection).some(value => !value)) { SalaryUI.message("Please choose a role, location, and experience level."); return; } calculate(selection); });
     document.querySelector("#clear-searches").addEventListener("click", () => { localStorage.removeItem(storageKey); renderRecent(); });
@@ -61,6 +88,7 @@
       includeRemote = event.target.checked;
       if (currentSelection) loadLiveOpenings(currentSelection);
     });
+    document.querySelector("#showdown-next").addEventListener("click", startShowdownRound);
     const sharedSelection = Object.fromEntries(new URLSearchParams(window.location.search));
     if (data.roles.includes(sharedSelection.role) && data.locations.includes(sharedSelection.location) && data.experienceLevels.includes(sharedSelection.experience)) {
       SalaryUI.setSelection(sharedSelection); calculate(sharedSelection); SalaryUI.shareMessage("Viewing a shared estimate.");
