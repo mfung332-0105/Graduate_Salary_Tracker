@@ -54,7 +54,12 @@ module.exports = async function handler(request, response) {
   const preferredLocations = locationTerms[location] || [];
   const matchesRemote = opening => /\bremote\b/i.test(opening.location);
   const matchingLocation = preferredLocations.length ? matchingRole.filter(opening => preferredLocations.some(term => opening.location.toLowerCase().includes(term)) || (includeRemote && matchesRemote(opening))) : matchingRole;
-  const openings = matchingLocation.slice(0, 5);
+  const openings = matchingLocation.slice(0, 5).map(opening => {
+    const locations = opening.location.split("•").map(item => item.trim()).filter(Boolean);
+    const matchingLocations = locations.filter(item => preferredLocations.some(term => item.toLowerCase().includes(term)) || (includeRemote && /\bremote\b/i.test(item)));
+    const matchedLocation = matchingLocations[0] || locations[0] || opening.location;
+    return { ...opening, matchedLocation, otherLocations: locations.filter(item => item !== matchedLocation) };
+  });
   response.setHeader("Cache-Control", "s-maxage=300, stale-while-revalidate=600");
   return response.status(200).json({ openings, sourceCount: settled.filter(result => result.status === "fulfilled").length, location, includeRemote });
 };
