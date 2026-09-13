@@ -13,7 +13,7 @@
 .comparison-card p { margin: 0; color: var(--muted); font-size: .86rem; }
 .comparison-card strong { display: block; margin-top: 20px; color: var(--accent); font-size: 1.45rem; letter-spacing: -.04em; }
 .comparison-card small { color: var(--muted); }
-.similar-link { display: inline-block; margin-top: 7px; color: var(--accent); font-size: .8rem; font-weight: 750; text-decoration: none; }
+.similar-link { display: block; width: fit-content; margin-top: 7px; color: var(--accent); font-size: .8rem; font-weight: 750; text-decoration: none; }
 .similar-link:hover { text-decoration: underline; }
 .comparison-difference { display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 20px; border-radius: 18px; background: var(--sage); text-align: center; }
 .comparison-difference span { color: var(--muted); font-size: .8rem; }
