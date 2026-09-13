@@ -16,13 +16,17 @@ window.SalarySource = {
         company: data.sampleEmployers[index % data.sampleEmployers.length],
         source: data.sourcePlaceholders[index % data.sourcePlaceholders.length]
       }))
-    ].map((listing, index) => ({
-      ...listing,
-      location: place,
-      experience: selection.experience,
-      minimum: Math.round(median * (0.78 + index * 0.02) / 1000) * 1000,
-      maximum: Math.round(median * (0.96 + index * 0.025) / 1000) * 1000
-    }));
+    ].map((listing, index) => {
+      const searchQuery = `${listing.title} jobs in ${place}`;
+      return {
+        ...listing,
+        location: place,
+        experience: selection.experience,
+        minimum: Math.round(median * (0.78 + index * 0.02) / 1000) * 1000,
+        maximum: Math.round(median * (0.96 + index * 0.025) / 1000) * 1000,
+        searchUrl: `https://www.google.com/search?q=${encodeURIComponent(searchQuery)}`
+      };
+    });
     const sampleSize = listings.length;
     const confidence = sampleSize >= 10 ? "High" : sampleSize >= 5 ? "Medium" : "Low";
     return {

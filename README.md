@@ -27,3 +27,5 @@ This implementation intentionally includes no accounts, authentication, database
 ## Phase 3 features
 
 Compare any two locally saved searches to view their selections, salary ranges, and median difference side by side. Use **Share estimate** to create a URL containing the selected role, location, and experience level. Opening that URL recreates the same locally calculated estimate without an account or external service.
+
+Each curated comparable listing includes a **Search similar roles** link. It opens a Google search for the listing title and selected location; it is not an application link or a claim that the example vacancy is live.
