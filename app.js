@@ -6,6 +6,7 @@
   let showdownRound;
   let showdownLocked = false;
   const showdownScore = { correct: 0, rounds: 0 };
+  const showdownRoundLimit = 20;
   const getRecent = () => { try { return JSON.parse(localStorage.getItem(storageKey)) || []; } catch { return []; } };
   const saveRecent = search => {
     const unique = getRecent().filter(item => !(item.role === search.role && item.location === search.location && item.experience === search.experience));
@@ -64,7 +65,7 @@
       const winner = showdownRound.first.median > showdownRound.second.median ? "first" : "second";
       showdownScore.rounds += 1;
       if (choice === winner) showdownScore.correct += 1;
-      SalaryUI.showShowdownAnswer(showdownRound, choice, showdownScore);
+      SalaryUI.showShowdownAnswer(showdownRound, choice, showdownScore, showdownScore.rounds >= showdownRoundLimit);
     });
   };
   document.addEventListener("DOMContentLoaded", async () => {
@@ -89,7 +90,10 @@
       includeRemote = event.target.checked;
       if (currentSelection) loadLiveOpenings(currentSelection);
     });
-    document.querySelector("#showdown-next").addEventListener("click", startShowdownRound);
+    document.querySelector("#showdown-next").addEventListener("click", () => {
+      if (showdownScore.rounds >= showdownRoundLimit) { showdownScore.correct = 0; showdownScore.rounds = 0; }
+      startShowdownRound();
+    });
     const sharedSelection = Object.fromEntries(new URLSearchParams(window.location.search));
     if (data.roles.includes(sharedSelection.role) && data.locations.includes(sharedSelection.location) && data.experienceLevels.includes(sharedSelection.experience)) {
       SalaryUI.setSelection(sharedSelection); calculate(sharedSelection); SalaryUI.shareMessage("Viewing a shared estimate.");
