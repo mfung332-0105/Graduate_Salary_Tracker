@@ -20,6 +20,6 @@ This is a static site and can be deployed to Vercel with the project root as the
 
 ## Phase 2 data approach
 
-Phase 2 uses expanded curated sample data because the USAJobs integration was postponed. Each result includes role-specific example employers, a selection-specific location and experience level, an illustrative salary range, and a source placeholder. `source.js` is the sole application boundary for data loading and normalization, so a future API can replace the local source without changing the UI.
+Phase 2 uses expanded curated sample data because the USAJobs integration was postponed. Every role now has ten role-specific comparable examples. Each result includes an example employer, the selected location and experience level, an illustrative salary range, and a source placeholder. Confidence is calculated from the comparable-example count: High for 10+, Medium for 5–9, and Low for fewer than 5. `source.js` is the sole application boundary for data loading and normalization, so a future API can replace the local source without changing the UI.
 
 This implementation intentionally includes no accounts, authentication, database, API dependency, scraping, AI features, or third-party libraries. See `CONTRACTS.md` and `CHECKS.md` for data and verification details.

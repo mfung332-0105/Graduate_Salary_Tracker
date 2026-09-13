@@ -17,5 +17,19 @@
     "Operations Analyst": [{"title":"Operations Analyst","company":"Evergreen Supply","source":"Sample listing · company careers page"},{"title":"Business Operations Associate","company":"Tandem Mobility","source":"Sample listing · job board"},{"title":"Process Improvement Analyst","company":"Keystone Services","source":"Sample listing · recruiter brief"}],
     "Customer Success Associate": [{"title":"Customer Success Associate","company":"Bridge CRM","source":"Sample listing · company careers page"},{"title":"Client Success Specialist","company":"Solace Learning","source":"Sample listing · job board"},{"title":"Customer Onboarding Associate","company":"Meridian Data","source":"Sample listing · recruiter brief"}]
   },
+  "additionalListingTitles": {
+    "Marketing Coordinator": ["Digital Marketing Coordinator", "Brand Marketing Assistant", "Content Marketing Associate", "Campaign Coordinator", "Social Media Coordinator", "Marketing Programs Associate", "Communications Coordinator"],
+    "Software Engineer": ["Frontend Engineer I", "Platform Engineer I", "Associate Application Developer", "Junior Full-Stack Engineer", "Graduate Software Engineer", "Cloud Support Engineer", "Systems Developer I"],
+    "Data Analyst": ["Reporting Analyst", "Product Data Associate", "Analytics Coordinator", "Research Data Analyst", "Junior BI Analyst", "Data Quality Analyst", "Revenue Operations Analyst"],
+    "Financial Analyst": ["Investment Operations Analyst", "Treasury Analyst", "Commercial Finance Analyst", "Accounting Analyst", "Risk Analyst I", "Revenue Analyst", "Junior Budget Analyst"],
+    "UX Designer": ["UX Research Associate", "Visual Designer I", "Interaction Designer I", "Design Systems Associate", "Digital Product Designer", "Service Design Associate", "Junior UI Designer"],
+    "Sales Associate": ["Account Development Representative", "Sales Operations Associate", "Retail Sales Associate", "Commercial Sales Representative", "Territory Sales Associate", "Partner Development Associate", "Inbound Sales Representative"],
+    "HR Coordinator": ["Recruiting Coordinator", "Benefits Coordinator", "HR Operations Associate", "People Programs Coordinator", "Talent Acquisition Assistant", "Learning Coordinator", "Employee Experience Associate"],
+    "Project Coordinator": ["Delivery Coordinator", "PMO Coordinator", "Client Project Associate", "Project Controls Assistant", "Program Operations Coordinator", "Implementation Associate", "Scheduling Coordinator"],
+    "Operations Analyst": ["Supply Chain Analyst", "Workforce Operations Analyst", "Strategy Operations Associate", "Business Process Analyst", "Logistics Analyst", "Quality Operations Analyst", "Service Operations Associate"],
+    "Customer Success Associate": ["Customer Support Specialist", "Account Coordinator", "Client Services Associate", "Customer Enablement Associate", "Technical Support Associate", "Renewals Coordinator", "Customer Experience Analyst"]
+  },
+  "sampleEmployers": ["Aperture Group", "Beacon Works", "Civicline", "Daybreak Partners", "Elm & Co.", "Forward Systems", "Goodwin Collective"],
+  "sourcePlaceholders": ["Sample listing · company careers page", "Sample listing · job board", "Sample listing · recruiter brief"],
   "estimates": []
 }

@@ -15,7 +15,7 @@ window.SalaryUI = (() => {
       document.querySelector("#results-heading").textContent = `${selection.role} · ${selection.location}`;
       [["minimum", estimate.minimum], ["median", estimate.median], ["maximum", estimate.maximum], ["range-min", estimate.minimum], ["range-max", estimate.maximum]].forEach(([id, value]) => document.querySelector(`#${id}`).textContent = formatMoney(value));
       document.querySelector("#confidence").textContent = `${estimate.confidence} confidence`;
-      document.querySelector("#confidence-copy").textContent = `Based on ${estimate.sampleSize} comparable early-career salary observations for this role and location.`;
+      document.querySelector("#confidence-copy").textContent = estimate.confidenceReason || `Based on ${estimate.sampleSize} comparable early-career salary observations for this role and location.`;
       document.querySelector("#listing-list").innerHTML = estimate.listings.map(listing => `<li><div><strong>${escapeHtml(listing.title)}</strong><span>${escapeHtml(listing.company)} · ${escapeHtml(listing.location)}</span><small>${escapeHtml(listing.experience)} · ${escapeHtml(listing.source)}</small></div><b>${formatMoney(listing.minimum)}–${formatMoney(listing.maximum)}</b></li>`).join("");
       results.hidden = false;
       results.scrollIntoView({ behavior: "smooth", block: "start" });
