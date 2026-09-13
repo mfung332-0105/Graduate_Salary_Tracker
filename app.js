@@ -50,6 +50,7 @@
     experience: data.experienceLevels[Math.floor(Math.random() * data.experienceLevels.length)]
   });
   const startShowdownRound = () => {
+    if (showdownScore.rounds >= showdownRoundLimit) return;
     const firstSelection = randomSelection();
     const first = { selection: firstSelection, ...SalarySource.estimateFor(data, firstSelection) };
     let secondSelection = randomSelection();
@@ -90,10 +91,7 @@
       includeRemote = event.target.checked;
       if (currentSelection) loadLiveOpenings(currentSelection);
     });
-    document.querySelector("#showdown-next").addEventListener("click", () => {
-      if (showdownScore.rounds >= showdownRoundLimit) { showdownScore.correct = 0; showdownScore.rounds = 0; }
-      startShowdownRound();
-    });
+    document.querySelector("#showdown-next").addEventListener("click", startShowdownRound);
     const sharedSelection = Object.fromEntries(new URLSearchParams(window.location.search));
     if (data.roles.includes(sharedSelection.role) && data.locations.includes(sharedSelection.location) && data.experienceLevels.includes(sharedSelection.experience)) {
       SalaryUI.setSelection(sharedSelection); calculate(sharedSelection); SalaryUI.shareMessage("Viewing a shared estimate.");

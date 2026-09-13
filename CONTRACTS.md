@@ -14,6 +14,6 @@ The app reads and writes `graduate-salary-tracker-recent-searches` in browser lo
 
 Phase 3 compares two records from the existing localStorage history by passing each back through `estimateFor`. Share URLs use the query parameters `role`, `location`, and `experience`; the app validates each against the local dataset before restoring an estimate.
 
-Salary Showdown creates two random selections from the local role, location, and experience arrays, then evaluates both via `estimateFor`. A game is capped at 20 rounds. Its in-memory score records correct answers, completed rounds, and rounded accuracy percentage; starting another game resets that state.
+Salary Showdown creates two random selections from the local role, location, and experience arrays, then evaluates both via `estimateFor`. A game is capped at 20 rounds and locks at completion. Its in-memory score records correct answers, completed rounds, and rounded accuracy percentage.
 
 `visualsFor` returns display-ready modeled median series for every location at the selected experience level and every experience level at the selected location. Each point includes `label`, `median`, `percentage`, and `selected`; the UI does not calculate salary data.

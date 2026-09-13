@@ -96,8 +96,7 @@ window.SalaryUI = (() => {
       document.querySelector("#showdown-score").textContent = `${score.correct} / ${score.rounds} · ${percentage}%`;
       document.querySelector("#showdown-feedback").textContent = complete ? `Game complete — you got ${score.correct} out of 20 correct (${percentage}%).` : correct ? "Correct — nice read on the salary range." : `Not quite — ${round[winner].selection.role} has the higher median.`;
       const next = document.querySelector("#showdown-next");
-      next.textContent = complete ? "Play again →" : "Next round →";
-      next.hidden = false;
+      next.hidden = complete;
     },
     setSelection(selection) { Object.entries(selection).forEach(([name, value]) => { document.querySelector(`#${name}`).value = value; }); }
   };

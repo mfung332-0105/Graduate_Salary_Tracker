@@ -32,7 +32,7 @@ Each curated comparable listing includes a **Search similar roles** link. It ope
 
 ## Salary Showdown
 
-At the bottom of the page, **Salary Showdown** presents two random role, location, and experience combinations. Choose the one with the higher calculated median salary to reveal both medians. Each game is capped at 20 rounds and shows correct answers, rounds played, and accuracy percentage; it uses the same local salary model as the main estimator and does not store or share game activity.
+At the bottom of the page, **Salary Showdown** presents two random role, location, and experience combinations. Choose the one with the higher calculated median salary to reveal both medians. Each game is capped at 20 rounds, then locks and displays correct answers, rounds played, and accuracy percentage; it uses the same local salary model as the main estimator and does not store or share game activity.
 
 ## Illustrative charts
 
