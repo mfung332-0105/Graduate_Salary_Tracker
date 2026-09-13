@@ -19,7 +19,8 @@
   const calculate = selection => {
     const estimate = SalarySource.estimateFor(data, selection);
     currentSelection = { role: selection.role, location: selection.location, experience: selection.experience };
-    SalaryUI.message(""); SalaryUI.shareMessage(""); SalaryUI.showEstimate(estimate, selection); saveRecent({ ...currentSelection, median: estimate.median }); renderRecent(); loadLiveOpenings(currentSelection);
+    const visuals = SalarySource.visualsFor(data, currentSelection);
+    SalaryUI.message(""); SalaryUI.shareMessage(""); SalaryUI.showEstimate(estimate, selection); SalaryUI.showVisuals(visuals); saveRecent({ ...currentSelection, median: estimate.median }); renderRecent(); loadLiveOpenings(currentSelection);
   };
   const loadLiveOpenings = async selection => {
     SalaryUI.liveOpeningsLoading();

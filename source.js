@@ -45,5 +45,16 @@ window.SalarySource = {
       confidenceReason: `${sampleSize} curated comparable examples meet the ${confidence.toLowerCase()}-confidence threshold.`,
       listings
     };
+  },
+  visualsFor(data, selection) {
+    const profile = entries => {
+      const medians = entries.map(entry => entry.median);
+      const low = Math.min(...medians); const high = Math.max(...medians);
+      return entries.map(entry => ({ ...entry, percentage: high === low ? 100 : Math.round(22 + ((entry.median - low) / (high - low)) * 78) }));
+    };
+    return {
+      locations: profile(data.locations.map(location => ({ label: location, median: this.estimateFor(data, { ...selection, location }).median, selected: location === selection.location }))),
+      experience: profile(data.experienceLevels.map(experience => ({ label: experience, median: this.estimateFor(data, { ...selection, experience }).median, selected: experience === selection.experience })))
+    };
   }
 };

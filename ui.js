@@ -20,6 +20,11 @@ window.SalaryUI = (() => {
       results.hidden = false;
       results.scrollIntoView({ behavior: "smooth", block: "start" });
     },
+    showVisuals(visuals) {
+      const chart = points => points.map(point => `<div class="chart-row${point.selected ? " chart-selected" : ""}"><span>${escapeHtml(point.label)}</span><div class="chart-bar"><i style="width:${point.percentage}%"></i></div><b>${formatMoney(point.median)}</b></div>`).join("");
+      document.querySelector("#location-chart").innerHTML = chart(visuals.locations);
+      document.querySelector("#experience-chart").innerHTML = chart(visuals.experience);
+    },
     liveOpeningsLoading() {
       document.querySelector("#live-openings").hidden = false;
       document.querySelector("#live-openings-status").textContent = "Checking official employer boards for matching openings…";
