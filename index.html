@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Explore salary estimates for early-career roles." />
+    <title>Graduate Salary Tracker</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <main class="shell">
+      <header class="hero">
+        <p class="eyebrow">Graduate Salary Tracker</p>
+        <h1>Know your range before the conversation.</h1>
+        <p class="lede">Explore realistic early-career salary expectations by role, location, and experience.</p>
+      </header>
+
+      <section class="card search-card" aria-labelledby="search-heading">
+        <div>
+          <p class="section-label">Salary estimator</p>
+          <h2 id="search-heading">Build your estimate</h2>
+        </div>
+        <form id="salary-form" novalidate>
+          <div class="form-grid">
+            <label>Role
+              <select id="role" name="role" required aria-describedby="form-message"><option value="">Select a role</option></select>
+            </label>
+            <label>Location
+              <select id="location" name="location" required><option value="">Select a location</option></select>
+            </label>
+            <label>Experience
+              <select id="experience" name="experience" required><option value="">Select experience</option></select>
+            </label>
+          </div>
+          <div class="form-footer">
+            <p id="form-message" class="form-message" role="alert"></p>
+            <button type="submit">Estimate salary <span aria-hidden="true">→</span></button>
+          </div>
+        </form>
+      </section>
+
+      <section id="results" class="results" hidden aria-live="polite" aria-labelledby="results-heading">
+        <div class="results-heading"><div><p class="section-label">Your estimate</p><h2 id="results-heading"></h2></div><span id="confidence" class="confidence"></span></div>
+        <div class="card estimate-card">
+          <div class="stat"><span>Minimum</span><strong id="minimum">—</strong></div>
+          <div class="stat featured"><span>Median estimate</span><strong id="median">—</strong></div>
+          <div class="stat"><span>Maximum</span><strong id="maximum">—</strong></div>
+          <div class="range-wrap" aria-label="Estimated salary range"><div class="range-labels"><span id="range-min">—</span><span>Typical range</span><span id="range-max">—</span></div><div class="range-track"><span class="range-fill"></span><i class="range-marker" aria-hidden="true"></i></div></div>
+        </div>
+        <div class="details-grid">
+          <article class="card listings"><h3>Comparable listings</h3><ul id="listing-list"></ul></article>
+          <aside class="card confidence-card"><h3>About this estimate</h3><p id="confidence-copy"></p><p class="disclaimer">Estimates are for reference only and are not financial or career advice.</p></aside>
+        </div>
+      </section>
+
+      <section class="recent-section" aria-labelledby="recent-heading">
+        <div class="recent-heading"><div><p class="section-label">Local history</p><h2 id="recent-heading">Recent searches</h2></div><button id="clear-searches" class="text-button" type="button" hidden>Clear history</button></div>
+        <div id="recent-searches" class="recent-list"><p class="empty-state">Your five most recent estimates will appear here.</p></div>
+      </section>
+    </main>
+    <footer>Built to help you begin salary conversations feeling prepared.</footer>
+    <script src="config.js"></script><script src="source.js"></script><script src="ui.js"></script><script src="app.js"></script>
+  </body>
+</html>

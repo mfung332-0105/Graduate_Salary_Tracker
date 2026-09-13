@@ -1,0 +1,13 @@
+{
+  "roles": ["Marketing Coordinator", "Software Engineer", "Data Analyst", "Financial Analyst", "UX Designer", "Sales Associate", "HR Coordinator", "Project Coordinator", "Operations Analyst", "Customer Success Associate"],
+  "locations": ["National Average", "California", "New York", "Texas", "Washington", "Florida", "Illinois", "Massachusetts"],
+  "experienceLevels": ["Internship / Student", "New Graduate", "Early Career"],
+  "roleBaseMedians": {"Marketing Coordinator":52000,"Software Engineer":82000,"Data Analyst":60000,"Financial Analyst":64000,"UX Designer":67000,"Sales Associate":48000,"HR Coordinator":50000,"Project Coordinator":55000,"Operations Analyst":59000,"Customer Success Associate":54000},
+  "locationMultipliers": {"National Average":1,"California":1.22,"New York":1.17,"Texas":0.96,"Washington":1.15,"Florida":0.91,"Illinois":0.99,"Massachusetts":1.14},
+  "experienceMultipliers": {"Internship / Student":0.67,"New Graduate":1,"Early Career":1.16},
+  "estimates": [
+    {"role":"Software Engineer","location":"California","experience":"New Graduate","minimum":85000,"median":105000,"maximum":128000,"confidence":"High","sampleSize":86,"listings":[{"title":"Associate Software Engineer","company":"Northstar Labs","location":"San Francisco, CA","salary":108000},{"title":"Software Engineer I","company":"Cedar Systems","location":"San Jose, CA","salary":112000},{"title":"Junior Backend Engineer","company":"Juniper Cloud","location":"Oakland, CA","salary":101000}]},
+    {"role":"Data Analyst","location":"New York","experience":"New Graduate","minimum":62000,"median":74000,"maximum":90000,"confidence":"High","sampleSize":64,"listings":[{"title":"Data Analyst","company":"Atlas Retail","location":"New York, NY","salary":76000},{"title":"Junior Insights Analyst","company":"Harbor Health","location":"Brooklyn, NY","salary":72000},{"title":"Business Data Analyst","company":"Civic Works","location":"New York, NY","salary":79000}]},
+    {"role":"Marketing Coordinator","location":"Texas","experience":"Early Career","minimum":51000,"median":61000,"maximum":74000,"confidence":"Medium","sampleSize":41,"listings":[{"title":"Marketing Coordinator","company":"Brightside Media","location":"Austin, TX","salary":63000},{"title":"Growth Marketing Associate","company":"Wildflower Foods","location":"Dallas, TX","salary":60000},{"title":"Marketing Specialist","company":"Mesa Digital","location":"Houston, TX","salary":64000}]}
+  ]
+}
