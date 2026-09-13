@@ -15,9 +15,18 @@
 .comparison-card small { color: var(--muted); }
 .similar-link { display: block; width: fit-content; margin-top: 7px; color: var(--accent); font-size: .8rem; font-weight: 750; text-decoration: none; }
 .similar-link:hover { text-decoration: underline; }
+.live-openings { margin-top: 20px; padding: 24px; }
+.live-openings-heading { display: flex; justify-content: space-between; align-items: flex-start; gap: 16px; }
+.live-openings-heading h3 { margin: 0; font-size: 1.05rem; }
+.live-badge { padding: 5px 9px; border-radius: 999px; background: var(--sage); color: var(--dark); font-size: .75rem; font-weight: 800; }
+.live-openings-status { margin: 15px 0; color: var(--muted); font-size: .9rem; }
+.live-openings li small { display: block; margin-top: 4px; color: var(--muted); font-size: .76rem; }
+.apply-link { align-self: center; color: var(--accent); font-size: .82rem; font-weight: 750; text-decoration: none; white-space: nowrap; }
+.apply-link:hover { text-decoration: underline; }
+.live-openings-note { margin: 15px 0 0; padding-top: 15px; border-top: 1px solid var(--line); color: var(--muted); font-size: .8rem; }
 .comparison-difference { display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 20px; border-radius: 18px; background: var(--sage); text-align: center; }
 .comparison-difference span { color: var(--muted); font-size: .8rem; }
 .comparison-difference strong { margin: 5px 0; color: var(--dark); font-size: 1.55rem; letter-spacing: -.04em; }
 .comparison-difference p { margin: 0; color: var(--muted); font-size: .8rem; }
-@media (max-width: 760px) { .comparison-controls { grid-template-columns: 1fr; } .versus { padding: 0; text-align: center; } .comparison-result { grid-template-columns: 1fr; } .comparison-difference { min-height: 120px; } }
+@media (max-width: 760px) { .comparison-controls { grid-template-columns: 1fr; } .versus { padding: 0; text-align: center; } .comparison-result { grid-template-columns: 1fr; } .comparison-difference { min-height: 120px; } .live-openings li { flex-direction: column; } .apply-link { align-self: flex-start; } }
 @media (max-width: 500px) { .result-actions { align-items: flex-start; flex-direction: column; } }

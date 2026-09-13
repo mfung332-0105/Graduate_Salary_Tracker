@@ -4,6 +4,13 @@ window.SalarySource = {
     if (!response.ok) throw new Error("Salary data could not be loaded.");
     return response.json();
   },
+  async liveOpenings(selection) {
+    const query = new URLSearchParams({ role: selection.role, location: selection.location });
+    const response = await fetch(`${window.SalaryTrackerConfig.liveOpeningsUrl}?${query}`);
+    const payload = await response.json().catch(() => ({}));
+    if (!response.ok) throw new Error(payload.message || "Live openings could not be loaded right now.");
+    return payload;
+  },
   estimateFor(data, selection) {
     const curated = data.estimates.find(item => item.role === selection.role && item.location === selection.location && item.experience === selection.experience);
     if (curated) return curated;

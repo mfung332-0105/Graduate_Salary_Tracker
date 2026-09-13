@@ -14,3 +14,5 @@
 - Make two different estimates. Choose each one in the comparison controls and confirm the role, location, experience level, salary ranges, and correctly calculated median difference display side by side. Confirm choosing the same estimate twice gives useful guidance.
 - Use **Share estimate** and open the generated URL in a new browser context. Confirm it restores the selected role, location, experience level, and same salary estimate without an account.
 - Open a URL with invalid share parameters and confirm it does not overwrite the current form or show an invalid result.
+- On a Vercel deployment, make an estimate and confirm the live-openings panel loads only official Figma Greenhouse or Swiftly Lever postings, labels the source, and links to the official posting in a new tab. Confirm the panel does not alter the curated salary range.
+- Temporarily make the live-openings endpoint unavailable and confirm the panel shows a useful error while the salary estimate and curated listings still work.

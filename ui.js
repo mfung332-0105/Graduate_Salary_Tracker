@@ -20,6 +20,23 @@ window.SalaryUI = (() => {
       results.hidden = false;
       results.scrollIntoView({ behavior: "smooth", block: "start" });
     },
+    liveOpeningsLoading() {
+      document.querySelector("#live-openings").hidden = false;
+      document.querySelector("#live-openings-status").textContent = "Checking official employer boards for matching openings…";
+      document.querySelector("#live-openings-list").innerHTML = "";
+    },
+    showLiveOpenings(payload) {
+      const status = document.querySelector("#live-openings-status");
+      if (!payload.sourceCount) { status.textContent = "Live employer boards are temporarily unavailable."; return; }
+      if (!payload.openings.length) { status.textContent = "No matching openings are available from the selected employer boards right now."; return; }
+      status.textContent = payload.locationNote || `Showing ${payload.openings.length} live opening${payload.openings.length === 1 ? "" : "s"} from ${payload.sourceCount} official employer board${payload.sourceCount === 1 ? "" : "s"}.`;
+      document.querySelector("#live-openings-list").innerHTML = payload.openings.map(opening => `<li><div><strong>${escapeHtml(opening.title)}</strong><span>${escapeHtml(opening.company)} · ${escapeHtml(opening.location)}</span><small>${escapeHtml(opening.source)}</small></div><a class="apply-link" href="${escapeHtml(opening.url)}" target="_blank" rel="noopener noreferrer">View official posting ↗</a></li>`).join("");
+    },
+    liveOpeningsError(message) {
+      document.querySelector("#live-openings").hidden = false;
+      document.querySelector("#live-openings-status").textContent = message;
+      document.querySelector("#live-openings-list").innerHTML = "";
+    },
     showRecent(searches, onSelect) {
       const box = document.querySelector("#recent-searches");
       document.querySelector("#clear-searches").hidden = searches.length === 0;

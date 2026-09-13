@@ -15,7 +15,12 @@
   const calculate = selection => {
     const estimate = SalarySource.estimateFor(data, selection);
     currentSelection = { role: selection.role, location: selection.location, experience: selection.experience };
-    SalaryUI.message(""); SalaryUI.shareMessage(""); SalaryUI.showEstimate(estimate, selection); saveRecent({ ...currentSelection, median: estimate.median }); renderRecent();
+    SalaryUI.message(""); SalaryUI.shareMessage(""); SalaryUI.showEstimate(estimate, selection); saveRecent({ ...currentSelection, median: estimate.median }); renderRecent(); loadLiveOpenings(currentSelection);
+  };
+  const loadLiveOpenings = async selection => {
+    SalaryUI.liveOpeningsLoading();
+    try { SalaryUI.showLiveOpenings(await SalarySource.liveOpenings(selection)); }
+    catch (error) { SalaryUI.liveOpeningsError(error.message); }
   };
   const shareCurrentEstimate = async () => {
     if (!currentSelection) return;
