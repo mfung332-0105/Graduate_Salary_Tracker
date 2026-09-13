@@ -23,9 +23,14 @@
       ]
     };
   };
+  const loadFederalOpenings = async selection => {
+    SalaryUI.federalLoading();
+    try { SalaryUI.federalResults(await SalarySource.federalOpenings(selection)); }
+    catch (error) { SalaryUI.federalError(error.message); }
+  };
   const calculate = selection => {
     const estimate = data.estimates.find(item => item.role === selection.role && item.location === selection.location && item.experience === selection.experience) || generatedEstimate(selection);
-    SalaryUI.message(""); SalaryUI.showEstimate(estimate, selection); saveRecent({ ...selection, median: estimate.median }); renderRecent();
+    SalaryUI.message(""); SalaryUI.showEstimate(estimate, selection); saveRecent({ ...selection, median: estimate.median }); renderRecent(); loadFederalOpenings(selection);
   };
   document.addEventListener("DOMContentLoaded", async () => {
     const form = document.querySelector("#salary-form");

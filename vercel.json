@@ -1,0 +1,3 @@
+{
+  "functions": { "api/usajobs.js": { "maxDuration": 10 } }
+}

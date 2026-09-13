@@ -6,6 +6,7 @@
     <meta name="description" content="Explore salary estimates for early-career roles." />
     <title>Graduate Salary Tracker</title>
     <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="phase2.css" />
   </head>
   <body>
     <main class="shell">
@@ -51,6 +52,12 @@
           <article class="card listings"><h3>Comparable listings</h3><ul id="listing-list"></ul></article>
           <aside class="card confidence-card"><h3>About this estimate</h3><p id="confidence-copy"></p><p class="disclaimer">Estimates are for reference only and are not financial or career advice.</p></aside>
         </div>
+        <section id="federal-openings" class="card federal-openings" hidden aria-labelledby="federal-heading">
+          <div class="federal-heading"><div><p class="section-label">Live federal roles</p><h3 id="federal-heading">Current USAJobs openings</h3></div><a class="source-link" href="https://www.usajobs.gov/" target="_blank" rel="noopener noreferrer">Source: USAJobs ↗</a></div>
+          <p id="federal-status" class="federal-status" role="status"></p>
+          <ul id="federal-list"></ul>
+          <p class="federal-note">Federal salaries and eligibility can differ from private-sector roles. Review each official listing before applying.</p>
+        </section>
       </section>
 
       <section class="recent-section" aria-labelledby="recent-heading">
